@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void volleyRequest() {
         //1. setup url
-        String url = "https://opentdb.com/api.php?amount=10";
+        String url = "https://opentdb.com/api.php?amount=50";
 
         //2. create request queue
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);

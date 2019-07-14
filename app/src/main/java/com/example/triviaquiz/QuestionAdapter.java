@@ -53,9 +53,17 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
                     incorrect = questionData.get(position).getIncorrect_answers();
 
-                    holder.button2.setText(incorrect[0]);
-                    holder.button3.setText(incorrect[1]);
-                    holder.button4.setText(incorrect[2]);
+                    if( incorrect.length > 1){
+
+                        holder.button2.setText(incorrect[0]);
+                        holder.button3.setText(incorrect[1]);
+                        holder.button4.setText(incorrect[2]);
+                    }
+                    else {
+                        holder.button2.setText(incorrect[0]);
+                        holder.button3.setText("");
+                        holder.button4.setText("");
+                    }
 
                 break;
 
@@ -63,27 +71,53 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
                 incorrect = questionData.get(position).getIncorrect_answers();
 
-                holder.button1.setText(incorrect[0]);
-                holder.button3.setText(incorrect[1]);
-                holder.button4.setText(incorrect[2]);
+                if (incorrect.length > 1){
+                    holder.button1.setText(incorrect[0]);
+                    holder.button3.setText(incorrect[1]);
+                    holder.button4.setText(incorrect[2]);
+                }
+                else {
+                    holder.button1.setText(incorrect[0]);
+                    holder.button3.setText("");
+                    holder.button4.setText("");
+                }
                 break;
 
             case 2: holder.button3.setText(questionData.get(position).getCorrect_answer());
 
                 incorrect = questionData.get(position).getIncorrect_answers();
 
-                holder.button1.setText(incorrect[0]);
-                holder.button2.setText(incorrect[1]);
-                holder.button4.setText(incorrect[2]);
+                if (incorrect.length > 1 ){
+
+                    holder.button1.setText(incorrect[0]);
+                    holder.button2.setText(incorrect[1]);
+                    holder.button4.setText(incorrect[2]);
+
+                }
+                else {
+                    holder.button1.setText(incorrect[0]);
+                    holder.button2.setText("");
+                    holder.button4.setText("");
+                }
                 break;
 
             case 3: holder.button4.setText(questionData.get(position).getCorrect_answer());
 
                 incorrect = questionData.get(position).getIncorrect_answers();
 
-                holder.button1.setText(incorrect[0]);
-                holder.button2.setText(incorrect[1]);
-                holder.button3.setText(incorrect[2]);
+                if (incorrect.length > 1){
+
+                    holder.button1.setText(incorrect[0]);
+                    holder.button2.setText(incorrect[1]);
+                    holder.button3.setText(incorrect[2]);
+                }
+
+                else{
+                    holder.button1.setText(incorrect[0]);
+                    holder.button2.setText("");
+                    holder.button3.setText("");
+                }
+
                 break;
 
         }
