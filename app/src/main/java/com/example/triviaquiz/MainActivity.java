@@ -1,5 +1,6 @@
 package com.example.triviaquiz;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -34,12 +36,30 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "test1";
     String TAG_LIST_MADE = "response";
     RecyclerView recyclerView;
+    int layoutId = R.layout.activity_main;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("layoutId", layoutId);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
+        //force landscape orientation
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // save state of views when paging
+        if (savedInstanceState != null) {
+            layoutId = savedInstanceState.getInt("layoutId", R.layout.activity_main);
+        }
+        setContentView(layoutId);
+
+
+        // http request to trivia db initiated
         volleyRequest();
 
         textView = findViewById(R.id.tv_question);
@@ -59,12 +79,18 @@ public class MainActivity extends AppCompatActivity {
 
         QuestionAdapter questionAdapter = new QuestionAdapter(responses);
         recyclerView.setAdapter(questionAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this,
+                LinearLayoutManager.HORIZONTAL, false));
+
+        // add view pager behavior
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
 
     }
 
-    //*********************************
-    //      Volley  http url request
-    //**********************************
+    //**************************************
+    //      Volley  http url request method
+    //*************************************
 
     public void volleyRequest() {
         //1. setup url

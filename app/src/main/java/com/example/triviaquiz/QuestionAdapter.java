@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Random;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder> {
 
@@ -39,8 +40,54 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
+
         holder.tvQuestion.setText(questionData.get(position).getQuestion());
-        holder.button1.setText(questionData.get(position).getCorrect_answer());
+        //holder.button1.setText(questionData.get(position).getCorrect_answer());
+
+
+        int correct = new Random().nextInt(3);
+        String[] incorrect;
+
+        switch (correct){
+            case 0: holder.button1.setText(questionData.get(position).getCorrect_answer());
+
+                    incorrect = questionData.get(position).getIncorrect_answers();
+
+                    holder.button2.setText(incorrect[0]);
+                    holder.button3.setText(incorrect[1]);
+                    holder.button4.setText(incorrect[2]);
+
+                break;
+
+            case 1: holder.button2.setText(questionData.get(position).getCorrect_answer());
+
+                incorrect = questionData.get(position).getIncorrect_answers();
+
+                holder.button1.setText(incorrect[0]);
+                holder.button3.setText(incorrect[1]);
+                holder.button4.setText(incorrect[2]);
+                break;
+
+            case 2: holder.button3.setText(questionData.get(position).getCorrect_answer());
+
+                incorrect = questionData.get(position).getIncorrect_answers();
+
+                holder.button1.setText(incorrect[0]);
+                holder.button2.setText(incorrect[1]);
+                holder.button4.setText(incorrect[2]);
+                break;
+
+            case 3: holder.button4.setText(questionData.get(position).getCorrect_answer());
+
+                incorrect = questionData.get(position).getIncorrect_answers();
+
+                holder.button1.setText(incorrect[0]);
+                holder.button2.setText(incorrect[1]);
+                holder.button3.setText(incorrect[2]);
+                break;
+
+        }
+
     }
 
 
@@ -52,12 +99,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     class QuestionViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvQuestion;
-        Button button1;
+        Button button1, button2, button3, button4;
 
         QuestionViewHolder(@NonNull View itemView) {
             super(itemView);
             tvQuestion = itemView.findViewById(R.id.tv_question);
             button1 = itemView.findViewById(R.id.btn1);
+            button2 = itemView.findViewById(R.id.btn2);
+            button3 = itemView.findViewById(R.id.btn3);
+            button4 = itemView.findViewById(R.id.btn4);
+
         }
     }
 
