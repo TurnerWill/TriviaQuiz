@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
 
     @Override
-    public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final QuestionViewHolder holder, int position) {
 
         final String answer = questionData.get(position).getCorrect_answer();
 
@@ -52,6 +53,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
+                if (answer == holder.button1.getText().toString())
+                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -59,6 +64,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
+                if (answer == holder.button2.getText().toString())
+                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -66,6 +75,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
+                if (answer == holder.button3.getText().toString())
+                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,6 +86,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
+                if (answer == holder.button4.getText().toString())
+                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
             }
         });
 

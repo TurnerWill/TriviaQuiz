@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements QuestionAdapter.O
 
     @Override
     public void answerClicked(String answer) {
-        Toast.makeText(this, "Check if this button's text is answer", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Check if this button's text is answer", Toast.LENGTH_SHORT).show();
     }
 
     private void loadRecyclerView(List<QuestionData> responses) {
