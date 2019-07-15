@@ -88,27 +88,31 @@ public class MainActivity extends AppCompatActivity implements QuestionAdapter.O
 
     @Override
     public void playSong(boolean flag) {
-        MediaPlayer mp1 ;
-        MediaPlayer mp2 ;
-
+        MediaPlayer mp1 = new MediaPlayer();
 
         if(flag ){
 
 
-                mp1 = MediaPlayer.create(this, R.raw.smart_mofo);
-                mp1.start();
-               // mp1.stop();
+            if(mp1.isPlaying()){
+                mp1.stop();
+                mp1.release();
+            }
 
-            //mp.stop();
+                mp1 = MediaPlayer.create(MainActivity.this, R.raw.smart_mofo);
+                mp1.start();
+
         }
         else {
-                mp2 = MediaPlayer.create(this, R.raw.error);
-                mp2.start();
-               // mp2.stop();
+            if(mp1.isPlaying()){
+                mp1.stop();
+                mp1.release();
+            }
+
+                mp1 = MediaPlayer.create(this, R.raw.error);
+                mp1.start();
 
         }
 
-        //mp.stop();
     }
 
     private void loadRecyclerView(List<QuestionData> responses) {
