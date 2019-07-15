@@ -3,8 +3,10 @@ package com.example.triviaquiz;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,15 +30,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements QuestionAdapter.OnAnswerClicked {
 
     TextView textView;
-    String question, choice1, choice2, choice3, choice4;
     Button button1, button2, button3, button4; // answer choices to a trivia question
     String TAG = "test1";
     String TAG_LIST_MADE = "response";
     RecyclerView recyclerView;
     int layoutId = R.layout.activity_main;
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -44,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
 
         //force landscape orientation
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -69,15 +71,23 @@ public class MainActivity extends AppCompatActivity {
         button3 = findViewById(R.id.btn3);
         button4 = findViewById(R.id.btn4);
 
+
+
         recyclerView = findViewById(R.id.trivia_question);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         recyclerView.setHasFixedSize(true);
 
+
+    }
+
+    @Override
+    public void answerClicked(String answer) {
+        Toast.makeText(this, "Check if this button's text is answer", Toast.LENGTH_SHORT).show();
     }
 
     private void loadRecyclerView(List<QuestionData> responses) {
 
-        QuestionAdapter questionAdapter = new QuestionAdapter(responses);
+        QuestionAdapter questionAdapter = new QuestionAdapter(responses, (QuestionAdapter.OnAnswerClicked) MainActivity.this);
         recyclerView.setAdapter(questionAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this,
                 LinearLayoutManager.HORIZONTAL, false));
@@ -141,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         // 4. pass the request object from step 3 into the requestQueue object from step 2
         requestQueue.add(request);
 
-    }
 
+    }
 
 }
