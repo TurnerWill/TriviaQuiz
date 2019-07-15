@@ -1,6 +1,9 @@
 package com.example.triviaquiz;
 
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +44,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     }
 
 
-
     @Override
     public void onBindViewHolder(@NonNull final QuestionViewHolder holder, int position) {
 
@@ -53,10 +55,12 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
-                if (answer == holder.button1.getText().toString())
+                if (answer == holder.button1.getText().toString()) {
                     Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
-                else
+                    listener.playSong(true);
+                } else
                     Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
+                    listener.playSong(false);
             }
         });
 
@@ -64,10 +68,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
-                if (answer == holder.button2.getText().toString())
+                if (answer == holder.button2.getText().toString()) {
                     Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
-                else
+                    listener.playSong(true);
+
+                } else
                     Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
+                listener.playSong(false);
             }
         });
 
@@ -75,10 +82,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
-                if (answer == holder.button3.getText().toString())
+                if (answer == holder.button3.getText().toString()) {
                     Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
-                else
+                    listener.playSong(true);
+                }
+                else {
                     Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
+                    listener.playSong(false);
+                }
             }
         });
 
@@ -86,10 +97,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             @Override
             public void onClick(View view) {
                 listener.answerClicked(answer);
-                if (answer == holder.button4.getText().toString())
+                if (answer == holder.button4.getText().toString()) {
                     Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show();
-                else
+                    listener.playSong(true);
+                }
+                else {
                     Toast.makeText(context, "Wrong!", Toast.LENGTH_SHORT).show();
+                    listener.playSong(false);
+                }
             }
         });
 
@@ -199,5 +214,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     public interface OnAnswerClicked {
         void answerClicked(String answer);
+
+        void playSong(boolean flag);
     }
 }

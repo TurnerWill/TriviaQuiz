@@ -1,6 +1,7 @@
 package com.example.triviaquiz;
 
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -83,6 +84,31 @@ public class MainActivity extends AppCompatActivity implements QuestionAdapter.O
     @Override
     public void answerClicked(String answer) {
         //Toast.makeText(this, "Check if this button's text is answer", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void playSong(boolean flag) {
+        MediaPlayer mp1 ;
+        MediaPlayer mp2 ;
+
+
+        if(flag ){
+
+
+                mp1 = MediaPlayer.create(this, R.raw.smart_mofo);
+                mp1.start();
+               // mp1.stop();
+
+            //mp.stop();
+        }
+        else {
+                mp2 = MediaPlayer.create(this, R.raw.error);
+                mp2.start();
+               // mp2.stop();
+
+        }
+
+        //mp.stop();
     }
 
     private void loadRecyclerView(List<QuestionData> responses) {
