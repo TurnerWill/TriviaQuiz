@@ -9,6 +9,28 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
+       <ImageView
+           android:id="@+id/sam1"
+           android:layout_width="125dp"
+           android:layout_height="200dp"
+           app:layout_constraintLeft_toLeftOf="parent"
+           android:layout_marginLeft="12dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toTopOf="@id/linearButton"
+           android:layout_marginBottom="20dp"
+           android:src="@drawable/sam_approves"/>
+
+       <ImageView
+           android:id="@+id/sam2"
+           android:layout_width="125dp"
+           android:layout_height="200dp"
+           app:layout_constraintRight_toRightOf="parent"
+           android:layout_marginRight="12dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toTopOf="@id/linearButton"
+           android:layout_marginBottom="20dp"
+           android:src="@drawable/sam_disapproves"/>
+
        <TextView
            android:id="@+id/tv_question"
            android:layout_width="match_parent"
@@ -56,8 +78,6 @@
 
 
        </LinearLayout>
-
-
 
 
    </androidx.constraintlayout.widget.ConstraintLayout>

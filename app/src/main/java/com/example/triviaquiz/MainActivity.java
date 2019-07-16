@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements QuestionAdapter.OnAnswerClicked {
 
+    ImageView samApproves;
+    ImageView samDisapproves;
     TextView textView;
     Button button1, button2, button3, button4; // answer choices to a trivia question
     String TAG = "test1";
@@ -71,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements QuestionAdapter.O
         button2 = findViewById(R.id.btn2);
         button3 = findViewById(R.id.btn3);
         button4 = findViewById(R.id.btn4);
-
-
+        samApproves = findViewById(R.id.sam1);
+        samDisapproves = findViewById(R.id.sam2);
 
         recyclerView = findViewById(R.id.trivia_question);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -90,28 +93,27 @@ public class MainActivity extends AppCompatActivity implements QuestionAdapter.O
     public void playSong(boolean flag) {
         MediaPlayer mp1 = new MediaPlayer();
 
-        if(flag ){
-
+        if(flag ){ // correct answer boolean true
 
             if(mp1.isPlaying()){
                 mp1.stop();
                 mp1.release();
             }
-
-                mp1 = MediaPlayer.create(MainActivity.this, R.raw.smart_mofo);
+                mp1 = MediaPlayer.create(this, R.raw.smart_mofo);
                 mp1.start();
 
+
+
         }
-        else {
+        else { // incorrect answer boolean false
             if(mp1.isPlaying()){
                 mp1.stop();
                 mp1.release();
             }
-
                 mp1 = MediaPlayer.create(this, R.raw.error);
                 mp1.start();
-
         }
+
 
     }
 
